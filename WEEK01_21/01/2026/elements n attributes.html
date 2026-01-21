@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Registration Page</h1>
+        
+        <form id="registrationForm" method="POST" action="/register">
+            
+            <!-- Personal Information Section -->
+            <fieldset>
+                <legend>Personal Information</legend>
+                
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" pattern="[0-9]{10}">
+                </div>
+
+                <div class="form-group">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" required>
+                </div>
+            </fieldset>
+
+            <!-- Account Information Section -->
+            <fieldset>
+                <legend>Account Information</legend>
+                
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" placeholder="Choose a username" minlength="5" maxlength="20" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter password" minlength="8" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password" required>
+                </div>
+            </fieldset>
+
+            <!-- Additional Information Section -->
+            <fieldset>
+                <legend>Additional Information</legend>
+                
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" name="gender">
+                        <option value="">-- Select Gender --</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="country">Country:</label>
+                    <input type="text" id="country" name="country" placeholder="Enter your country" list="countries">
+                    <datalist id="countries">
+                        <option value="USA">
+                        <option value="UK">
+                        <option value="Canada">
+                        <option value="India">
+                        <option value="Australia">
+                    </datalist>
+                </div>
+
+                <div class="form-group">
+                    <label for="bio">Bio:</label>
+                    <textarea id="bio" name="bio" rows="4" cols="50" placeholder="Tell us about yourself" maxlength="500"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="experience">Experience Level:</label>
+                    <input type="range" id="experience" name="experience" min="0" max="10" step="1">
+                </div>
+            </fieldset>
+
+            <!-- Preferences Section -->
+            <fieldset>
+                <legend>Preferences</legend>
+                
+                <div class="form-group">
+                    <input type="checkbox" id="newsletter" name="newsletter" value="yes">
+                    <label for="newsletter">Subscribe to our newsletter</label>
+                </div>
+
+                <div class="form-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree to the terms and conditions</label>
+                </div>
+
+                <div class="form-group">
+                    <p>Preferred Contact Method:</p>
+                    <input type="radio" id="emailContact" name="contact" value="email">
+                    <label for="emailContact">Email</label>
+                    
+                    <input type="radio" id="phoneContact" name="contact" value="phone">
+                    <label for="phoneContact">Phone</label>
+                    
+                    <input type="radio" id="smsContact" name="contact" value="sms">
+                    <label for="smsContact">SMS</label>
+                </div>
+            </fieldset>
+
+            <!-- Buttons Section -->
+            <div class="form-group">
+                <button type="submit" id="submitBtn">Register</button>
+                <button type="reset" id="resetBtn">Clear Form</button>
+                <button type="button" id="cancelBtn">Cancel</button>
+            </div>
+
+        </form>
+
+        <!-- Additional Information -->
+        <footer>
+            <p>&copy; 2026 Registration Page. All rights reserved.</p>
+            <a href="#top">Back to Top</a>
+        </footer>
+    </div>
+</body>
+</html>
