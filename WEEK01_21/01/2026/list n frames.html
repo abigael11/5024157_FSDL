@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Registration Form with Lists & Frames</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0099cc 0%, #00d4ff 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        /* Navigation List Styles */
+        nav {
+            margin-bottom: 30px;
+        }
+
+        nav > h2 {
+            color: #0099cc;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Features List Styles */
+        .features-section {
+            margin: 30px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ecf0f1 100%);
+            border-left: 5px solid #00d4ff;
+            border-radius: 10px;
+        }
+
+        .features-section h2 {
+            color: #0099cc;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        .features-section ol {
+            list-style-position: inside;
+            color: #333;
+            line-height: 2;
+            font-weight: 500;
+        }
+
+        .features-section li {
+            margin-bottom: 12px;
+            padding-left: 10px;
+            color: #555;
+        }
+
+        .features-section li::marker {
+            color: #00d4ff;
+            font-weight: 700;
+        }
+
+        /* Benefits List Styles */
+        .benefits-section {
+            margin: 30px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #e0f7ff 0%, #ccf0ff 100%);
+            border-radius: 10px;
+            border: 2px solid #00d4ff;
+        }
+
+        .benefits-section h2 {
+            color: #0099cc;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        .benefits-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .benefits-section li {
+            padding: 12px 20px;
+            margin-bottom: 10px;
+            background: white;
+            border-left: 4px solid #00d4ff;
+            border-radius: 5px;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .benefits-section li:before {
+            content: '✓';
+            position: absolute;
+            left: 12px;
+            color: #00d4ff;
+            font-weight: 700;
+            font-size: 1.2em;
+        }
+
+        .benefits-section li:hover {
+            background: #f0fbff;
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.2);
+        }
+
+        /* Registration Form Styles */
+        .registration-form {
+            margin: 30px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #fafbff 0%, #f5f9ff 100%);
+            border-radius: 12px;
+            border: 2px solid #00d4ff;
+        }
+
+        .registration-form h2 {
+            color: #0099cc;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        fieldset {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 2px solid #00d4ff;
+            border-radius: 8px;
+            background: white;
+        }
+
+        legend {
+            color: #00d4ff;
+            font-weight: 700;
+            padding: 0 10px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            color: #1a1a1a;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .required {
+            color: #ff4757;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #00d4ff;
+            border-radius: 8px;
+            font-size: 0.95em;
+            font-family: inherit;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #0099cc;
+            box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Two Column Layout */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Preferences List */
+        .preferences-list {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .preferences-list h3 {
+            color: #0099cc;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .preferences-list ul {
+            list-style: none;
+        }
+
+        .preferences-list li {
+            padding: 10px 0;
+            color: #555;
+            display: flex;
+            align-items: center;
+        }
+
+        .preferences-list input[type="checkbox"],
+        .preferences-list input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 12px;
+            accent-color: #00d4ff;
+        }
+
+        /* Frames Section */
+        .frames-section {
+            margin: 30px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ecf0f1 100%);
+            border-radius: 10px;
+            border: 2px solid #00d4ff;
+        }
+
+        .frames-section h2 {
+            color: #0099cc;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        .frame-container {
+            margin-bottom: 25px;
+            border: 2px solid #00d4ff;
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .frame-title {
+            background: linear-gradient(135deg, #0099cc 0%, #00d4ff 100%);
+            color: white;
+            padding: 12px 20px;
+            font-weight: 600;
+        }
+
+        iframe {
+            width: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: white;
+            padding: 16px 40px;
+            font-size: 1.05em;
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 212, 255, 0.5);
+        }
+
+        .reset-btn {
+            background-color: #f0f0f0;
+            color: #666;
+            border: 2px solid #ddd;
+        }
+
+        .reset-btn:hover {
+            background-color: #e8e8e8;
+        }
+
+        .cancel-btn {
+            background: linear-gradient(135deg, #ff4757 0%, #ff3838 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+        }
+
+        .cancel-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(255, 71, 87, 0.5);
+        }
+
+        footer {
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer a {
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav a {
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>✨ Advanced Registration Portal</h1>
+            <p>Complete registration with lists, frames, and multimedia integration</p>
+        </header>
+
+        <div class="content">
+            <!-- Navigation List -->
+            <nav>
+                <h2>Quick Navigation</h2>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#benefits">Benefits</a></li>
+                    <li><a href="#registration">Register</a></li>
+                    <li><a href="#multimedia">Multimedia</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Features Section with Ordered List -->
+            <section id="features" class="features-section">
+                <h2>📋 Registration Steps</h2>
+                <ol>
+                    <li>Complete your <strong>Personal Information</strong> section with accurate details</li>
+                    <li>Create a <strong>Secure Username</strong> and <strong>Strong Password</strong></li>
+                    <li>Provide <strong>Contact Details</strong> for account recovery and notifications</li>
+                    <li>Select your <strong>Preferences</strong> and <strong>Privacy Settings</strong></li>
+                    <li>Review and <strong>Accept Terms & Conditions</strong></li>
+                    <li>Verify your <strong>Email Address</strong> through confirmation link</li>
+                    <li>Complete <strong>Account Setup</strong> and start using the platform</li>
+                </ol>
+            </section>
+
+            <!-- Benefits Section with Unordered List -->
+            <section id="benefits" class="benefits-section">
+                <h2>🎁 Benefits of Registration</h2>
+                <ul>
+                    <li>Access to exclusive members-only content and resources</li>
+                    <li>Personalized user experience tailored to your preferences</li>
+                    <li>Priority customer support available 24/7</li>
+                    <li>Special discounts and promotional offers</li>
+                    <li>Secure data encryption and privacy protection</li>
+                    <li>Earn rewards points on every transaction</li>
+                    <li>Connect with a community of like-minded users</li>
+                    <li>Regular updates and new feature announcements</li>
+                </ul>
+            </section>
+
+            <!-- Registration Form -->
+            <section id="registration" class="registration-form">
+                <h2>📝 Registration Form</h2>
+                <form method="POST" action="/register">
+                    <!-- Personal Information -->
+                    <fieldset>
+                        <legend>Personal Information</legend>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name <span class="required">*</span></label>
+                                <input type="text" id="firstName" name="firstName" placeholder="John" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name <span class="required">*</span></label>
+                                <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Date of Birth <span class="required">*</span></label>
+                            <input type="date" id="dob" name="dob" required>
+                        </div>
+                    </fieldset>
+
+                    <!-- Account Information -->
+                    <fieldset>
+                        <legend>Account Information</legend>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="username">Username <span class="required">*</span></label>
+                                <input type="text" id="username" name="username" placeholder="john_doe123" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email2">Confirm Email <span class="required">*</span></label>
+                                <input type="email" id="email2" name="email2" placeholder="Confirm email" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="password">Password <span class="required">*</span></label>
+                                <input type="password" id="password" name="password" placeholder="Minimum 8 characters" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password <span class="required">*</span></label>
+                                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password" required>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Preferences List -->
+                    <fieldset>
+                        <legend>Preferences & Settings</legend>
+                        
+                        <div class="preferences-list">
+                            <h3>Communication Preferences</h3>
+                            <ul>
+                                <li>
+                                    <input type="checkbox" id="email_updates" name="email_updates">
+                                    <label for="email_updates">Receive email updates and newsletters</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="sms_alerts" name="sms_alerts">
+                                    <label for="sms_alerts">Receive SMS alerts for important notifications</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="promo" name="promo">
+                                    <label for="promo">Receive promotional offers and discounts</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="newsletter" name="newsletter">
+                                    <label for="newsletter">Subscribe to our weekly newsletter</label>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="preferences-list">
+                            <h3>Preferred Contact Method</h3>
+                            <ul>
+                                <li>
+                                    <input type="radio" id="contact_email" name="contact_method" value="email">
+                                    <label for="contact_email">Email</label>
+                                </li>
+                                <li>
+                                    <input type="radio" id="contact_phone" name="contact_method" value="phone">
+                                    <label for="contact_phone">Phone</label>
+                                </li>
+                                <li>
+                                    <input type="radio" id="contact_sms" name="contact_method" value="sms">
+                                    <label for="contact_sms">SMS</label>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="interests">Areas of Interest</label>
+                            <select id="interests" name="interests" multiple>
+                                <option>Technology</option>
+                                <option>Business</option>
+                                <option>Education</option>
+                                <option>Health & Fitness</option>
+                                <option>Entertainment</option>
+                                <option>Travel</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bio">About You</label>
+                            <textarea id="bio" name="bio" placeholder="Tell us about yourself..."></textarea>
+                        </div>
+                    </fieldset>
+
+                    <!-- Buttons -->
+                    <div class="button-group">
+                        <button type="submit" class="submit-btn">✓ Submit Registration</button>
+                        <button type="reset" class="reset-btn">↻ Clear Form</button>
+                        <button type="button" class="cancel-btn" onclick="window.history.back()">✕ Cancel</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Multimedia & Frames Section -->
+            <section id="multimedia" class="frames-section">
+                <h2>🎬 Multimedia & Information</h2>
+                
+                <div class="frame-container">
+                    <div class="frame-title">📺 Promotional Video</div>
+                    <iframe height="300" src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen></iframe>
+                </div>
+
+                <div class="frame-container">
+                    <div class="frame-title">🗺️ Our Location</div>
+                    <iframe height="300" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.1234567!2d-74.006!3d40.7128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1234567890" 
+                        style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+                <div class="frame-container">
+                    <div class="frame-title">📱 Social Media Integration</div>
+                    <iframe height="400" src="https://www.instagram.com/p/B2-l-RRAePA/embed" 
+                        allowfullscreen="true"></iframe>
+                </div>
+
+                <div class="frame-container">
+                    <div class="frame-title">📰 News & Updates Feed</div>
+                    <iframe height="250" src="https://platform.twitter.com/widgets/tweet.html?tweet_id=123456789" 
+                        style="border:1px solid #ccc;"></iframe>
+                </div>
+            </section>
+
+            <!-- Additional Information List -->
+            <section style="margin: 30px 0; padding: 30px; background: linear-gradient(135deg, #f8f9fa 0%, #ecf0f1 100%); border-radius: 10px;">
+                <h2 style="color: #0099cc; margin-bottom: 20px;">📚 Important Information</h2>
+                <ul style="list-style-position: inside; color: #333; line-height: 2; font-weight: 500;">
+                    <li>All personal data is encrypted and secured with SSL certificates</li>
+                    <li>We comply with GDPR and international data protection regulations</li>
+                    <li>Your password must be at least 8 characters with mixed case and numbers</li>
+                    <li>Account verification is required within 24 hours of registration</li>
+                    <li>Two-factor authentication is recommended for enhanced security</li>
+                    <li>You can update your profile information anytime from the dashboard</li>
+                </ul>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Advanced Registration Portal. All rights reserved.</p>
+            <p>
+                <a href="#privacy">Privacy Policy</a> | 
+                <a href="#terms">Terms of Service</a> | 
+                <a href="#contact">Contact Us</a> | 
+                <a href="#support">Support</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
